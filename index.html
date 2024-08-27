@@ -4,51 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pandomi Tech Innovations</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
+    <header class="bg-dark text-white py-3">
         <div class="container">
             <h1>Pandomi Tech Innovations</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#">Pandomi Tech Innovations</a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
         </div>
     </header>
     <main>
-        <section class="hero">
-            <div class="container">
+        <section class="hero bg-light py-5">
+            <div class="container text-center">
                 <h2>Welcome to Pandomi Tech Innovations</h2>
                 <p>Your partner in tech solutions and innovations.</p>
             </div>
         </section>
-        <section class="services">
+        <section class="services py-5">
             <div class="container">
-                <h2>Our Services</h2>
-                <div class="service">
-                    <h3>Consulting</h3>
-                    <p>Expert advice on technology solutions tailored to your needs.</p>
-                </div>
-                <div class="service">
-                    <h3>Development</h3>
-                    <p>Custom software development to help your business grow.</p>
-                </div>
-                <div class="service">
-                    <h3>Support</h3>
-                    <p>Ongoing support to ensure your systems run smoothly.</p>
+                <h2 class="text-center mb-4">Our Services</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Consulting</h3>
+                                <p class="card-text">Expert advice on technology solutions tailored to your needs.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Development</h3>
+                                <p class="card-text">Custom software development to help your business grow.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Support</h3>
+                                <p class="card-text">Ongoing support to ensure your systems run smoothly.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-    <footer>
-        <div class="container">
+    <footer class="bg-danger text-white py-3">
+        <div class="container text-center">
             <p>&copy; 2024 Pandomi Tech Innovations</p>
-            <p><a href="https://wa.me/0758882563">Developed by Pandomi Tech Innovations</a></p>
+            <p><a href="https://wa.me/0758882563" class="text-white">Developed by Pandomi Tech Innovations</a></p>
         </div>
     </footer>
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
