@@ -1,3 +1,44 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+
+    $githubToken = 'YOUR_GITHUB_PERSONAL_ACCESS_TOKEN'; // Replace with your GitHub token
+    $repoOwner = 'YOUR_GITHUB_USERNAME'; // Replace with your GitHub username
+    $repoName = 'YOUR_REPOSITORY_NAME'; // Replace with your repository name
+
+    $issueTitle = "Contact Form Submission: $subject";
+    $issueBody = "Name: $name\nEmail: $email\nPhone: $phone\n\nMessage:\n$message";
+
+    $data = [
+        'title' => $issueTitle,
+        'body' => $issueBody
+    ];
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://api.github.com/repos/$repoOwner/$repoName/issues");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Authorization: token ' . $githubToken,
+        'Content-Type: application/json',
+        'User-Agent: YourAppName' // Required for GitHub API requests
+    ]);
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    if ($response) {
+        $responseMessage = 'Form submitted successfully!';
+    } else {
+        $responseMessage = 'Failed to submit form.';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,7 +160,7 @@
                                 <a class="nav-link" href="about.html">About Us</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="contact.html">Contact</a>
+                                <a class="nav-link active" href="contact.php">Contact</a>
                             </li>
                         </ul>
                     </div>
@@ -136,39 +177,39 @@
                 <p>Email: <a href="mailto:info@pandomitech.com">info@pandomitech.com</a></p>
                 <p>Phone: <a href="tel:+123456789">+123 456 789</a></p>
 
-                <!-- Updated Contact Form -->
-                <form class="row g-3 mt-4 needs-validation" novalidate>
+                <!-- Contact Form -->
+                <form class="row g-3 mt-4 needs-validation" novalidate method="POST" action="contact.php">
                     <div class="col-md-6">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
                         <div class="invalid-feedback">
                             Please provide your name.
                         </div>
                     </div>
                     <div class="col-md-6">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
                         <div class="invalid-feedback">
                             Please provide a valid email.
                         </div>
                     </div>
                     <div class="col-md-6">
                         <label for="phone" class="form-label">Phone</label>
-                        <input type="tel" class="form-control" id="phone" placeholder="Your Phone Number" required>
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Your Phone Number" required>
                         <div class="invalid-feedback">
                             Please provide a phone number.
                         </div>
                     </div>
                     <div class="col-md-6">
                         <label for="subject" class="form-label">Subject</label>
-                        <input type="text" class="form-control" id="subject" placeholder="Subject" required>
+                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
                         <div class="invalid-feedback">
                             Please provide a subject.
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
+                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
                         <div class="invalid-feedback">
                             Please provide a message.
                         </div>
@@ -177,6 +218,11 @@
                         <button class="btn btn-primary" type="submit">Send Message</button>
                     </div>
                 </form>
+                <?php if (isset($responseMessage)) : ?>
+                    <div class="alert alert-info mt-4">
+                        <?php echo htmlspecialchars($responseMessage); ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </section>
     </main>
