@@ -6,9 +6,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $subject = $_POST['subject'];
     $message = $_POST['message'];
 
-    $githubToken = 'YOUR_GITHUB_PERSONAL_ACCESS_TOKEN'; // Replace with your GitHub token
-    $repoOwner = 'YOUR_GITHUB_USERNAME'; // Replace with your GitHub username
-    $repoName = 'YOUR_REPOSITORY_NAME'; // Replace with your repository name
+    $githubToken = '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'; // Replace with your GitHub token
+    $repoOwner = 'Pozejr'; // Replace with your GitHub username
+    $repoName = 'PANDOMITECHINNOVATIONS'; // Replace with your repository name
 
     $issueTitle = "Contact Form Submission: $subject";
     $issueBody = "Name: $name\nEmail: $email\nPhone: $phone\n\nMessage:\n$message";
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         'Authorization: token ' . $githubToken,
         'Content-Type: application/json',
-        'User-Agent: YourAppName' // Required for GitHub API requests
+      'User-Agent: website (https://pozejr.github.io/PANDOMITECHINNOVATIONS)'
     ]);
     $response = curl_exec($ch);
     curl_close($ch);
