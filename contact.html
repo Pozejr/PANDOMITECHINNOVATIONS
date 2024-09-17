@@ -136,33 +136,46 @@
                 <p>Email: <a href="mailto:info@pandomitech.com">info@pandomitech.com</a></p>
                 <p>Phone: <a href="tel:+123456789">+123 456 789</a></p>
 
-                <!-- Contact Form -->
-                <form class="mt-4">
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                <!-- Updated Contact Form -->
+                <form class="row g-3 mt-4 needs-validation" novalidate>
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                        <div class="invalid-feedback">
+                            Please provide your name.
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="phone" class="form-label">Phone</label>
-                            <input type="tel" class="form-control" id="phone" placeholder="Your Phone" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" class="form-control" id="subject" placeholder="Subject" required>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid email.
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="col-md-6">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Your Phone Number" required>
+                        <div class="invalid-feedback">
+                            Please provide a phone number.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="subject" placeholder="Subject" required>
+                        <div class="invalid-feedback">
+                            Please provide a subject.
+                        </div>
+                    </div>
+                    <div class="col-12">
                         <label for="message" class="form-label">Message</label>
                         <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
+                        <div class="invalid-feedback">
+                            Please provide a message.
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <div class="col-12">
+                        <button class="btn btn-primary" type="submit">Send Message</button>
+                    </div>
                 </form>
             </div>
         </section>
@@ -178,5 +191,24 @@
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Form Validation Script -->
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
 </body>
 </html>
